@@ -1,0 +1,161 @@
+/* Base styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1 {
+  text-align: center;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+.checkbox-list {
+  margin: 10px 0 20px 0;
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  border-radius: 6px;
+  background-color: var(--checkbox-bg);
+}
+
+.checkbox-item {
+  margin-bottom: 6px;
+}
+
+#calculate-btn {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  transition: background-color 0.3s ease;
+}
+
+#calculate-btn:disabled {
+  background-color: var(--btn-disabled-bg);
+  cursor: not-allowed;
+  color: var(--btn-disabled-text);
+}
+
+#updates-container {
+  margin-top: 20px;
+  white-space: pre-line;
+  font-family: monospace;
+  min-height: 100px;
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  border-radius: 6px;
+  background-color: var(--updates-bg);
+}
+
+/* Theme variables */
+body.light-mode {
+  --background-color: #ffffff;
+  --text-color: #222222;
+  --border-color: #cccccc;
+  --checkbox-bg: #f9f9f9;
+  --btn-bg: #007bff;
+  --btn-text: #ffffff;
+  --btn-disabled-bg: #cccccc;
+  --btn-disabled-text: #666666;
+  --updates-bg: #f0f0f0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+body.dark-mode {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --border-color: #444444;
+  --checkbox-bg: #1e1e1e;
+  --btn-bg: #1a73e8;
+  --btn-text: #ffffff;
+  --btn-disabled-bg: #555555;
+  --btn-disabled-text: #bbbbbb;
+  --updates-bg: #222222;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Scrollbar styling for checkbox list */
+.checkbox-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.checkbox-list::-webkit-scrollbar-track {
+  background: var(--checkbox-bg);
+  border-radius: 6px;
+}
+
+.checkbox-list::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 6px;
+  border: 2px solid var(--checkbox-bg);
+}
+
+/* Theme toggle button */
+#theme-toggle, #help-btn {
+  position: fixed;
+  top: 15px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  z-index: 1100;
+}
+
+#theme-toggle {
+  right: 20px;
+}
+
+#help-btn {
+  right: 160px;
+}
+
+#theme-toggle:hover, #help-btn:hover {
+  background-color: var(--btn-text);
+  color: var(--btn-bg);
+}
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+}
+
+.modal-content {
+  background: white;
+  padding: 1.5rem;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  color: #222;
+  outline: none;
+}
+
+body.dark-mode .modal-content {
+  background: #222;
+  color: #eee;
+}
+
+.hidden {
+  display: none;
+}
