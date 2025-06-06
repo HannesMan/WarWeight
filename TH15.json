@@ -1,0 +1,19 @@
+[
+  { "name": "Monolith", "builtLevel": 1 },
+  { "name": "Spell Tower", "index": 1, "builtLevel": 1 },
+  { "name": "Spell Tower", "index": 2, "builtLevel": 1 },
+  { "name": "Monolith", "level": 2, "requiresBuiltLevel1": true },
+  { "name": "Spell Tower", "index": 1, "level": 3, "requiresBuiltLevel1": true },
+  { "name": "Spell Tower", "index": 2, "level": 3, "requiresBuiltLevel1": true },
+  { "name": "Scattershot", "index": 1, "level": 4 },
+  { "name": "Scattershot", "index": 2, "level": 4 },
+  { "name": "Eagle Artillery", "level": 6 },
+  { "name": "Town Hall Giga Inferno", "level": 5 },
+  { "name": "Inferno Tower", "index": 1, "level": 9 },
+  { "name": "Inferno Tower", "index": 2, "level": 9 },
+  { "name": "Inferno Tower", "index": 3, "level": 9 },
+  { "name": "X-Bow", "index": 1, "level": 10 },
+  { "name": "X-Bow", "index": 2, "level": 10 },
+  { "name": "X-Bow", "index": 3, "level": 10 },
+  { "name": "X-Bow", "index": 4, "level": 10 }
+]
