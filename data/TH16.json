@@ -26,5 +26,17 @@
   { "name": "Wizard Tower", "index": 2, "level": 16 },
   { "name": "Wizard Tower", "index": 3, "level": 16 },
   { "name": "Wizard Tower", "index": 4, "level": 16 },
-  { "name": "Wizard Tower", "index": 5, "level": 16 }
+  { "name": "Wizard Tower", "index": 5, "level": 16 },
+
+  { "name": "Bomb Tower", "index": 1, "level": 11 },
+  { "name": "Bomb Tower", "index": 2, "level": 11 },
+  
+  { "name": "Geared Cannon", "index": 1, "level": 21 },
+  { "name": "Geared Archer Tower", "index": 1, "level": 21 },
+  
+  { "name": "Cannon", "index": 1, "level": 21 },
+  { "name": "Cannon", "index": 2, "level": 21 },
+  
+  { "name": "Archer Tower", "index": 1, "level": 21 },
+  { "name": "Archer Tower", "index": 2, "level": 21 }
 ]
