@@ -12,6 +12,7 @@
   <h1>War Weight Builder Upgrades</h1>
   <button id="theme-toggle" aria-pressed="false" aria-label="Toggle dark/light theme">Toggle Dark/Light</button>
   <button id="help-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="help-modal">Help</button>
+  <button id="tip-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="tip-modal">€ - Tip</button>
 </header>
 
 <main>
@@ -35,10 +36,10 @@
 </main>
 
 <footer>
-  <small>© 2025 War Weight Builder</small>
+  <small>© 2025 War Weight Builder | Made by Hannes Man / BLITZKRIEG FWA</small>
 </footer>
 
-<!-- Modal -->
+<!-- Help Modal -->
 <div id="help-modal" role="dialog" aria-modal="true" aria-labelledby="help-title" aria-hidden="true" class="modal hidden">
   <div class="modal-content" tabindex="-1">
     <h2 id="help-title">Help</h2>
@@ -49,10 +50,22 @@
   </div>
 </div>
 
+<!-- Tip Modal -->
+<div id="tip-modal" role="dialog" aria-modal="true" aria-labelledby="tip-title" aria-hidden="true" class="modal hidden">
+  <div class="modal-content" tabindex="-1">
+    <h2 id="tip-title">Tip</h2>
+    <div id="tip-content">
+      This site is completely free to use. If you want to support the work, you can tip <a href="https://streamelements.com/hannes_man/tip" target="_blank" rel="noopener noreferrer">here</a>. Thank you!
+    </div>
+    <button id="tip-close-btn" aria-label="Close tip">Close</button>
+  </div>
+</div>
+
 <!-- Scripts loading order -->
+<script src="data/helpContent.js"></script>       <!-- Help content -->
 <script src="scripts/generalScript.js"></script>  <!-- UI logic, populateTHOptions() -->
 <script src="scripts/wwScript.js"></script>       <!-- Data loading and calculations -->
-<script src="data/helpContent.js"></script>       <!-- Help content -->
+<script src="scripts/feedback.js"></script>
 
 </body>
 </html>
