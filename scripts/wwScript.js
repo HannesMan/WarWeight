@@ -30,30 +30,101 @@ function formatEmbedLine(building, idx, allBuildings) {
   return `${idx + 1}. ${building.name}${indexPart} ${levelStr}`.trim();
 }
 
-function createCheckboxList(id, options) {
+function createCheckboxListWithAll(id, allBuildings) {
   const container = document.createElement('div');
   container.className = 'checkbox-list';
   container.id = id;
 
-  options.forEach(opt => {
+  // Lasketaan kuinka monta rakennusta kutakin nimeä on
+  const nameCounts = allBuildings.reduce((acc, b) => {
+    acc[b.name] = (acc[b.name] || 0) + 1;
+    return acc;
+  }, {});
+
+  // Säilytetään viitteet All-checkboxeihin ja yksittäisiin checkboxeihin
+  const allCheckboxes = {}; // { name: allCheckboxElement }
+  const singleCheckboxes = []; // { checkbox, buildingName }
+
+  allBuildings.forEach((building, i) => {
+    const name = building.name;
+    const hasMultiple = nameCounts[name] > 1;
+
+    // Jos on useampi ja All-checkboxia ei vielä ole, lisätään se juuri ennen ensimmäistä tämän nimistä rakennusta
+    if (hasMultiple && !allCheckboxes[name]) {
+      // Luo All-checkboxin div
+      const allDiv = document.createElement('div');
+      allDiv.style.display = 'flex';
+      allDiv.style.alignItems = 'center';
+      allDiv.style.gap = '0.3em';
+      allDiv.style.marginBottom = '0.2em';
+
+      const allChk = document.createElement('input');
+      allChk.type = 'checkbox';
+      allChk.id = `chk-all-${name.replace(/\s+/g, '-')}`;
+      allChk.dataset.name = name;
+
+      const allLabel = document.createElement('label');
+      allLabel.htmlFor = allChk.id;
+      allLabel.textContent = `All ${name}`;
+
+      allDiv.appendChild(allChk);
+      allDiv.appendChild(allLabel);
+
+      container.appendChild(allDiv);
+
+      allCheckboxes[name] = allChk;
+
+      // Event listener: kun All-checkbox muuttuu, ruksaataan/poistetaan ruksaus kaikista samaa nimeä olevista yksittäisistä
+      allChk.addEventListener('change', () => {
+        const checked = allChk.checked;
+        singleCheckboxes.forEach(({ checkbox, buildingName }) => {
+          if (buildingName === name) {
+            checkbox.checked = checked;
+            // Triggeröi yksittäisen checkboxin change-eventti, jotta päivitykset tapahtuu oikein
+            checkbox.dispatchEvent(new Event('change'));
+          }
+        });
+      });
+    }
+
+    // Lisätään yksittäinen checkbox
     const item = document.createElement('div');
     item.className = 'checkbox-item';
     item.style.display = 'flex';
     item.style.alignItems = 'center';
     item.style.gap = '0.5em';
+    item.style.marginLeft = '1.5em'; // Sisennys
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.id = opt.id;
-    checkbox.value = opt.index;
+    checkbox.id = `chk-${i}`;
+    checkbox.value = i;
 
     const label = document.createElement('label');
-    label.htmlFor = opt.id;
-    label.textContent = opt.label;
+    label.htmlFor = checkbox.id;
+    label.textContent = formatCheckboxLabel(building, allBuildings);
 
     item.appendChild(checkbox);
     item.appendChild(label);
     container.appendChild(item);
+
+    singleCheckboxes.push({ checkbox, buildingName: name });
+
+    // Kun yksittäinen checkbox muuttuu, tarkistetaan pitääkö All-checkbox ruksaista
+    checkbox.addEventListener('change', () => {
+      const allChk = allCheckboxes[name];
+      if (!allChk) return;
+
+      // Onko kaikki saman nimiset yksittäiset checkboxit ruksaistu?
+      const allChecked = singleCheckboxes
+        .filter(sc => sc.buildingName === name)
+        .every(sc => sc.checkbox.checked);
+
+      // Päivitetään All-checkbox tämän mukaan, mutta ei triggeröidä tapahtumaa uudelleen
+      if (allChk.checked !== allChecked) {
+        allChk.checked = allChecked;
+      }
+    });
   });
 
   return container;
@@ -67,30 +138,12 @@ function updateBuildings(thKey, buildingsContainer, calculateBtn, warWeightData)
 
   const allBuildings = warWeightData[thKey];
 
-  const allOptions = allBuildings.map((b, i) => ({
-    label: formatCheckboxLabel(b, allBuildings),
-    index: i,
-    id: `chk-${i}`,
-  }));
+  const label = document.createElement('label');
+  label.textContent = 'Select completed upgrades:';
+  buildingsContainer.appendChild(label);
 
-  const firstBatch = allOptions.slice(0, 25);
-  const secondBatch = allOptions.slice(25);
-
-  const label1 = document.createElement('label');
-  label1.textContent = 'Select completed upgrades (part 1):';
-  buildingsContainer.appendChild(label1);
-
-  const list1 = createCheckboxList('checkbox-list-1', firstBatch);
-  buildingsContainer.appendChild(list1);
-
-  if (secondBatch.length > 0) {
-    const label2 = document.createElement('label');
-    label2.textContent = 'Select completed upgrades (part 2):';
-    buildingsContainer.appendChild(label2);
-
-    const list2 = createCheckboxList('checkbox-list-2', secondBatch);
-    buildingsContainer.appendChild(list2);
-  }
+  const list = createCheckboxListWithAll('checkbox-list', allBuildings);
+  buildingsContainer.appendChild(list);
 
   calculateBtn.disabled = false;
 
@@ -110,14 +163,16 @@ function calculateNextUpgrades(selectedTH, warWeightData, updatesContainer) {
   }
 
   const checkedIndexes = new Set();
-  ['checkbox-list-1', 'checkbox-list-2'].forEach(listId => {
-    const list = document.getElementById(listId);
-    if (!list) return;
+  const list = document.getElementById('checkbox-list');
+  if (list) {
     const checkedBoxes = list.querySelectorAll('input[type=checkbox]:checked');
     checkedBoxes.forEach(chk => {
-      checkedIndexes.add(parseInt(chk.value));
+      // All-checkboxeilla ei ole value-attribuuttia, joten tarkistetaan että value ei ole tyhjä
+      if (chk.value !== '') {
+        checkedIndexes.add(parseInt(chk.value));
+      }
     });
-  });
+  }
 
   let remaining = allBuildings
     .map((b, i) => ({ ...b, _index: i }))
@@ -140,7 +195,7 @@ function calculateNextUpgrades(selectedTH, warWeightData, updatesContainer) {
   const nextUpgrades = remaining.slice(0, 6);
 
   if (nextUpgrades.length === 0) {
-    updatesContainer.textContent = '✅ All upgrades completed!';
+    updatesContainer.textContent = '✅ You are ready to move to the next Town Hall!';
     return;
   }
 
