@@ -33,5 +33,7 @@
   { "name": "Wizard Tower", "index": 2, "level": 17 },
   { "name": "Wizard Tower", "index": 3, "level": 17 },
   { "name": "Wizard Tower", "index": 4, "level": 17 },
-  { "name": "Wizard Tower", "index": 5, "level": 17 }
+  { "name": "Wizard Tower", "index": 5, "level": 17 },
+  { "name": "Bomb Tower", "index": 1, "level": 12 },
+  { "name": "Bomb Tower", "index": 2, "level": 12 }
 ]
