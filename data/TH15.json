@@ -15,5 +15,29 @@
   { "name": "X-Bow", "index": 1, "level": 10 },
   { "name": "X-Bow", "index": 2, "level": 10 },
   { "name": "X-Bow", "index": 3, "level": 10 },
-  { "name": "X-Bow", "index": 4, "level": 10 }
+  { "name": "X-Bow", "index": 4, "level": 10 },
+  { "name": "Builder Hut", "index": 1, "level": 5 },
+  { "name": "Builder Hut", "index": 2, "level": 5 },
+  { "name": "Builder Hut", "index": 3, "level": 5 },
+  { "name": "Builder Hut", "index": 4, "level": 5 },
+  { "name": "Builder Hut", "index": 5, "level": 5 },
+  
+  { "name": "Wizard Tower", "index": 1, "level": 15 },
+  { "name": "Wizard Tower", "index": 2, "level": 15 },
+  { "name": "Wizard Tower", "index": 3, "level": 15 },
+  { "name": "Wizard Tower", "index": 4, "level": 15 },
+  { "name": "Wizard Tower", "index": 5, "level": 15 },
+  
+  { "name": "Bomb Tower", "index": 1, "level": 10 },
+  { "name": "Bomb Tower", "index": 2, "level": 10 },
+  
+  { "name": "Cannon", "index": 1, "level": 21 },
+  { "name": "Cannon", "index": 2, "level": 21 },
+  { "name": "Cannon", "index": 3, "level": 21 },
+  { "name": "Cannon", "index": 4, "level": 21 },
+  
+  { "name": "Archer Tower", "index": 1, "level": 21 },
+  { "name": "Archer Tower", "index": 2, "level": 21 },
+  { "name": "Archer Tower", "index": 3, "level": 21 },
+  { "name": "Archer Tower", "index": 4, "level": 21 }
 ]
