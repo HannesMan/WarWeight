@@ -1,0 +1,23 @@
+[
+  { "name": "Builder Hut", "index": 1, "builtLevel": 1 },
+  { "name": "Builder Hut", "index": 2, "builtLevel": 1 },
+  { "name": "Builder Hut", "index": 3, "builtLevel": 1 },
+  { "name": "Builder Hut", "index": 4, "builtLevel": 1 },
+  { "name": "Builder Hut", "index": 5, "builtLevel": 1 },
+  { "name": "Builder Hut", "index": 1, "level": 4, "requiresBuiltLevel1": true },
+  { "name": "Builder Hut", "index": 2, "level": 4, "requiresBuiltLevel1": true },
+  { "name": "Builder Hut", "index": 3, "level": 4, "requiresBuiltLevel1": true },
+  { "name": "Builder Hut", "index": 4, "level": 4, "requiresBuiltLevel1": true },
+  { "name": "Builder Hut", "index": 5, "level": 4, "requiresBuiltLevel1": true },
+  { "name": "Scattershot", "index": 1, "level": 3, "requiresBuiltLevel1": true },
+  { "name": "Scattershot", "index": 2, "level": 3, "requiresBuiltLevel1": true },
+  { "name": "Eagle Artillery", "level": 5 },
+  { "name": "Town Hall Giga Inferno", "level": 5 },
+  { "name": "Inferno Tower", "index": 1, "level": 8 },
+  { "name": "Inferno Tower", "index": 2, "level": 8 },
+  { "name": "Inferno Tower", "index": 3, "level": 8 },
+  { "name": "X-Bow", "index": 1, "level": 9 },
+  { "name": "X-Bow", "index": 2, "level": 9 },
+  { "name": "X-Bow", "index": 3, "level": 9 },
+  { "name": "X-Bow", "index": 4, "level": 9 }
+]
