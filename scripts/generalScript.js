@@ -8,6 +8,10 @@ const helpBtn = document.getElementById('help-btn');
 const helpModal = document.getElementById('help-modal');
 const helpCloseBtn = document.getElementById('help-close-btn');
 
+const tipBtn = document.getElementById('tip-btn');
+const tipModal = document.getElementById('tip-modal');
+const tipCloseBtn = document.getElementById('tip-close-btn');
+
 let selectedTH = null;
 window.warWeightData = {}; // Tallennetaan data tähän
 
@@ -81,7 +85,7 @@ themeToggleBtn.addEventListener('click', () => {
   applyTheme(newTheme);
 });
 
-// Modalin avaus/sulku
+// Modalin avaus/sulku Helpille
 helpBtn.addEventListener('click', () => {
   helpModal.classList.remove('hidden');
   helpModal.setAttribute('aria-hidden', 'false');
@@ -96,12 +100,36 @@ helpCloseBtn.addEventListener('click', () => {
   helpBtn.focus();
 });
 
+// Modalin avaus/sulku Tipille
+tipBtn.addEventListener('click', () => {
+  tipModal.classList.remove('hidden');
+  tipModal.setAttribute('aria-hidden', 'false');
+  tipBtn.setAttribute('aria-expanded', 'true');
+  tipModal.querySelector('.modal-content').focus();
+});
+
+tipCloseBtn.addEventListener('click', () => {
+  tipModal.classList.add('hidden');
+  tipModal.setAttribute('aria-hidden', 'true');
+  tipBtn.setAttribute('aria-expanded', 'false');
+  tipBtn.focus();
+});
+
+// Sulje modaalit Esc-näppäimellä
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && !helpModal.classList.contains('hidden')) {
-    helpModal.classList.add('hidden');
-    helpModal.setAttribute('aria-hidden', 'true');
-    helpBtn.setAttribute('aria-expanded', 'false');
-    helpBtn.focus();
+  if (e.key === 'Escape') {
+    if (!helpModal.classList.contains('hidden')) {
+      helpModal.classList.add('hidden');
+      helpModal.setAttribute('aria-hidden', 'true');
+      helpBtn.setAttribute('aria-expanded', 'false');
+      helpBtn.focus();
+    }
+    if (!tipModal.classList.contains('hidden')) {
+      tipModal.classList.add('hidden');
+      tipModal.setAttribute('aria-hidden', 'true');
+      tipBtn.setAttribute('aria-expanded', 'false');
+      tipBtn.focus();
+    }
   }
 });
 
