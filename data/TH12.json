@@ -7,5 +7,12 @@
   { "name": "X-Bow", "index": 1, "level": 6 },
   { "name": "X-Bow", "index": 2, "level": 6 },
   { "name": "X-Bow", "index": 3, "level": 6 },
-  { "name": "X-Bow", "index": 4, "level": 6 }
+  { "name": "X-Bow", "index": 4, "level": 6 },
+  { "name": "Wizard Tower", "index": 1, "level": 11 },
+  { "name": "Wizard Tower", "index": 2, "level": 11 },
+  { "name": "Wizard Tower", "index": 3, "level": 11 },
+  { "name": "Wizard Tower", "index": 4, "level": 11 },
+  { "name": "Wizard Tower", "index": 5, "level": 11 },
+  { "name": "Bomb Tower", "index": 1, "level": 7 },
+  { "name": "Bomb Tower", "index": 2, "level": 7 }
 ]
